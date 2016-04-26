@@ -29,7 +29,7 @@
 							</li>
 							<li><a href="#">Control Appliances</a></li>
 						</ul>
-									<div class="row-fluid">	
+						<div class="row-fluid">	
 							<div class="box span12">
 								<div class="box-header">
 									<h2><i class="halflings-icon white white hand-top"></i><span class="break"></span>Control Appliances</h2>
@@ -56,6 +56,86 @@
 									}
 									echo '		<a class="quick-button-small span1" onclick="loadStatusChangeButtonClicked(\''.$document['sl_no'].'\',\''.$idCounter.'\',\''.$document['image'].'\',\''.$document['name'].'\');" id="'.$idCounter.'">
 													<img src="img/devices/'.$document['image'].$sta.'.png" style="height:16px width:16px"></img>
+													<p>'.$document['name'].'</p>
+													<span class="notification '.$status.'</span>
+												</a>';
+									$idCounter++;
+									$rowItemCounter++;	
+									if($rowItemCounter>11)
+									{
+										echo '<div class="clearfix"></div></div><div class="box-content">';
+										$rowItemCounter=0;
+									}
+								}
+								echo '<div class="clearfix"></div></div>';
+								ExceptionThrower::Stop();
+							?>
+							</div><!--/span-->
+							<div class="row-fluid">	
+							<div class="box span12">
+								<div class="box-header">
+									<h2><i class="halflings-icon white white hand-top"></i><span class="break"></span>Device Profiles</h2>
+								</div>
+								<?php
+								$idCounter=0;
+								$rowItemCounter=0;
+								ExceptionThrower::Start();
+								$deviceProfiles = $m->smart_home->my_smart_home_profiles;
+								$val = $deviceProfiles->find(array('for_device'=>'WEB'))->sort(array('sl_no' => 1));
+								echo '<div class="box-content">';
+								foreach ($val as $document) {
+									if(strcmp($document['Status'],"O")==0)
+									{
+										$status='blue">ON';
+										$sta='_on';
+									}
+									else
+									{
+										$status='red">OFF';
+										$sta='_off';
+									}
+									echo '		<a class="quick-button-small span1" onclick="changeHomeProfileClicked(\''.$document['sl_no'].'\');" id="'.	$idCounter.'">
+													<img src="img/devices/'.$document['profile_image'].$sta.'.png" style="height:16px width:16px"></img>
+													<p>'.$document['profile_name'].'</p>
+													<span class="notification '.$status.'</span>
+												</a>';
+									$idCounter++;
+									$rowItemCounter++;	
+									if($rowItemCounter>11)
+									{
+										echo '<div class="clearfix"></div></div><div class="box-content">';
+										$rowItemCounter=0;
+									}
+								}
+								echo '<div class="clearfix"></div></div>';
+								ExceptionThrower::Stop();
+							?>
+							</div><!--/span-->
+							<div class="row-fluid">	
+							<div class="box span12">
+								<div class="box-header">
+									<h2><i class="halflings-icon white white hand-top"></i><span class="break"></span>Audio Profiles</h2>
+								</div>
+								<?php
+								$idCounter=0;
+								$rowItemCounter=0;
+								ExceptionThrower::Start();
+								$audioProfiles = $m->smart_home->smart_home_audio_profiles;
+								$val = $audioProfiles->find()->sort(array('sl_no' => 1));
+								echo '<div class="box-content">';
+								foreach ($val as $document) {
+									if(strcmp($document['is_active'],"1")==0)
+									{
+										$status='blue">ON';
+										$sta='_on';
+									}
+									else
+									{
+										$status='red">OFF';
+										$sta='_off';
+									}
+									echo '		<a class="quick-button-small span1" onclick="changeAudioProfileClicked(\''.$document['profile_id'].'\');" id="'.$idCounter.'">
+													<img src="img/devices/'.$document['profile_image'].$sta.'.png" style="height:16px width:16px"></img>
 													<p>'.$document['name'].'</p>
 													<span class="notification '.$status.'</span>
 												</a>';

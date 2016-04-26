@@ -22,6 +22,115 @@ function addImageName(){
 	var id=document.getElementById('food_name').value;
 	document.getElementById('food_image').value=id.toLowerCase().replace(/ /g,"_");
 }
+function addImageNameProfile(){
+	var id=document.getElementById('profile_name').value;
+	document.getElementById('profile_image').value=id.toLowerCase().replace(/ /g,"_");
+}
+function changeHomeProfileClicked(profileID){
+	   var xmlhttp;
+       if (window.XMLHttpRequest)
+	      {
+           xmlhttp=new XMLHttpRequest();
+          }
+       else 
+	      {
+	       xmlhttp=new ActiveXObject('Microsoft.XMLHTTP');
+           }
+		xmlhttp.onreadystatechange=function()
+		{ 
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				alert('Profile Changed Sucessfully.');
+			}
+		}
+	var val=""
+	
+	var link="http://192.168.0.1/smart_home/API/web_interface/change_home_profile.php?ID="+profileID;
+	xmlhttp.open("GET",link,false);
+	xmlhttp.send();
+}
+function changeAudioProfileClicked(profileID){
+	   var xmlhttp;
+       if (window.XMLHttpRequest)
+	      {
+           xmlhttp=new XMLHttpRequest();
+          }
+       else 
+	      {
+	       xmlhttp=new ActiveXObject('Microsoft.XMLHTTP');
+           }
+		xmlhttp.onreadystatechange=function()
+		{ 
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				alert('Audio Profile Changed Sucessfully.');
+			}
+		}
+	var val=""
+	
+	var link="http://192.168.0.1/smart_home/API/utilities_all/changeAudioProfile.php?NAME=Test&ID="+profileID;
+	xmlhttp.open("GET",link,false);
+	xmlhttp.send();
+}
+function addAudioProfile(){
+   var xmlhttp;
+       if (window.XMLHttpRequest)
+	      {
+           xmlhttp=new XMLHttpRequest();
+          }
+       else 
+	      {
+	       xmlhttp=new ActiveXObject('Microsoft.XMLHTTP');
+           }
+		xmlhttp.onreadystatechange=function()
+		{ 
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				alert('Profile added Sucessfully.');
+			}
+		}
+	var val="";
+	var name=document.getElementById('profile_name').value;
+	var image=document.getElementById('profile_image').value;
+	var sequence=document.getElementById('sequence').value;
+	var inputs=document.getElementById('input_devices').value;
+	var outputs=document.getElementById('output_devices').value;
+	var date=document.getElementById('date_added').value;
+	
+	var link="http://192.168.0.1/smart_home/API/web_interface/add_audio_profile.php?IMG="+image+"&NAME="+name+"&SEQ="+sequence+"&IN="+inputs+"&OUT="+outputs+"&DATE="+date;
+	xmlhttp.open("GET",link,false);
+	xmlhttp.send();
+}
+function addHomeProfile(){
+   var xmlhttp;
+       if (window.XMLHttpRequest)
+	      {
+           xmlhttp=new XMLHttpRequest();
+          }
+       else 
+	      {
+	       xmlhttp=new ActiveXObject('Microsoft.XMLHTTP');
+           }
+		xmlhttp.onreadystatechange=function()
+		{ 
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				alert('Profile added Sucessfully.');
+			}
+		}
+	var val="";
+	var offDevices=document.getElementById('off_devices').value;
+	var onDevices=document.getElementById('on_devices').value;
+	var forDevice=document.getElementById('for_devices').value;
+	var Image=document.getElementById('profile_image').value;
+	var profileName=document.getElementById('profile_name').value;
+	var date=document.getElementById('date_added').value;
+	var link="http://192.168.0.1/smart_home/API/web_interface/add_home_profile.php?OFF="+offDevices+"&ON="+onDevices+"&FOR="+forDevice+"&IMG="+Image+"&NAME="+profileName+"&DATE="+date;
+	xmlhttp.open("GET",link,false);
+	xmlhttp.send();
+}
+
+
 function addSensor(sl_no){
    var xmlhttp;
        if (window.XMLHttpRequest)

@@ -5,7 +5,7 @@ $outputDb = $m->smart_home->board_output_details;
 changeLoad("woofer","BRD4","O");
 changeLoad("tv","BRD4","O");
 changeLoad("shelf","BRD4","F");
-changeLoad("fan","BRD3","O");
+changeLoad("fan","BRD3","F");
 changeLoad("room","BRD3","O");
 changeLoad("liquid","BRD3","F");
 
